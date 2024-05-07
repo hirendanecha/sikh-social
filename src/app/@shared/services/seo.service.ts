@@ -69,7 +69,7 @@ export class SeoService {
     }
 
     if (!tagValue.image) {
-      tagValue.image = 'https://freedom.buzz/assets/images/banner/HinduSocial-Logo.jpg';
+      tagValue.image = 'https://freedom.buzz/assets/images/banner/Sikh-Social-logo.png';
     }
 
     this.meta.updateTag({
