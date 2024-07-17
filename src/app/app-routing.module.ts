@@ -14,10 +14,10 @@ const routes: Routes = [
     component: LandingPageComponent,
     pathMatch: 'full',
   },
-  {
-    path: 'appointment-call/:name',
-    component: AppointmentCallComponent,
-  },
+  // {
+  //   path: 'appointment-call/:name',
+  //   component: AppointmentCallComponent,
+  // },
   {
     path: '',
     loadChildren: () =>
