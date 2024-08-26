@@ -48,17 +48,18 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     Email: new FormControl('', [Validators.required]),
     Password: new FormControl('', [Validators.required]),
     confirm_password: new FormControl('', [Validators.required]),
-    MobileNo: new FormControl('', [Validators.required]),
+    MobileNo: new FormControl(''),
     Country: new FormControl('US', [Validators.required]),
     Zip: new FormControl('', Validators.required),
     State: new FormControl('', Validators.required),
-    City: new FormControl('', Validators.required),
-    County: new FormControl('', Validators.required),
+    City: new FormControl(''),
+    County: new FormControl(''),
     TermAndPolicy: new FormControl(false, Validators.required),
   });
 
   theme = '';
   passwordHidden: boolean = true;
+  confirmpasswordHidden: boolean = true;
   @ViewChild('captcha', { static: true }) captchaElement:ElementRef
   constructor(
     private spinner: NgxSpinnerService,
@@ -188,6 +189,13 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     this.passwordHidden = !this.passwordHidden;
   }
 
+  toggleConfirmPasswordVisibility(confirmpasswordInput: HTMLInputElement) {
+    confirmpasswordInput.type =
+      confirmpasswordInput.type === 'password' ? 'text' : 'password';
+    this.confirmpasswordHidden = !this.confirmpasswordHidden;
+  }
+
+
   validatepassword(): boolean {
     const pattern = '[a-zA-Z0-9]{5,}';
     // const pattern =
@@ -234,8 +242,8 @@ export class SignUpComponent implements OnInit, AfterViewInit {
         // this.updateCustomer();
       } else {
         // this.submitted = true;
-        this.save();
       }
+      this.save();
     } else {
       this.msg = 'Please enter mandatory fields(*) data.';
       this.scrollTop();
