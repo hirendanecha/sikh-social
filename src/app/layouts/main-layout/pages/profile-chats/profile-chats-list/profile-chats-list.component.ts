@@ -220,7 +220,7 @@ export class ProfileChatsListComponent
           if (data !== null) {
             // this.messageList.push(data);
             const url = data?.messageText || null;
-            const text = url?.replace(/<br\s*\/?>|<[^>]*>/g, '');
+            const text = url?.replace(/<br\s*\/?>|<[^>]*>/g, ' ');
             const matches = text?.match(
               /(?:https?:\/\/|www\.)[^\s<]+(?:\s|<br\s*\/?>|$)/
             );

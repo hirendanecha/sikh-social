@@ -16,7 +16,7 @@ export class CustomerService {
 
   customerObs: Subject<any> = new Subject<any>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getCustomer(id: number): Observable<any> {
     this.http
@@ -39,7 +39,9 @@ export class CustomerService {
   }
 
   deleteCustomer(id: number, profileId: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}?profileId=${profileId}`, { responseType: 'text' });
+    return this.http.delete(`${this.baseUrl}/${id}?profileId=${profileId}`, {
+      responseType: 'text',
+    });
   }
 
   getCustomersList(): Observable<any> {
@@ -69,7 +71,9 @@ export class CustomerService {
   }
 
   getProfile(id): Observable<Object> {
-    return this.http.get<Object>(`${this.baseUrl}/profile/${id}`);
+    return this.http.get<Object>(
+      `${this.baseUrl}/profile/${id}?q=${Date.now()}`
+    );
   }
 
   updateProfile(id, customer: Customer): Observable<Object> {
@@ -118,13 +122,18 @@ export class CustomerService {
     return this.http.get(`${this.baseUrl}/verify-token/${token}`);
   }
 
-  startCallToBuzzRing(callerData: Object): Observable<any>{
-    const url = 'https://ring-api.sikh.social/api/v1/customers/call-notification';
+  startCallToBuzzRing(callerData: Object): Observable<any> {
+    const url =
+      'https://ring-api.sikh.social/api/v1/customers/call-notification';
     return this.http.post(url, callerData);
   }
 
-  startGroupCallToBuzzRing(callerData: Object): Observable<any>{
-    const url = 'https://ring-api.sikh.social/api/v1/customers/group-call-notification';
+  startGroupCallToBuzzRing(callerData: Object): Observable<any> {
+    const url =
+      'https://ring-api.sikh.social/api/v1/customers/group-call-notification';
     return this.http.post(url, callerData);
+  }
+  updateNotificationSound(data: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/onOff-notification`, data);
   }
 }
